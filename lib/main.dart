@@ -113,3 +113,26 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+// TODO 위젯북
+// TODO 테스트
+// TODO 시각회귀테스트
+// TODO 기능테스트
+
+// TODO 로그인
+// TODO 회원가입
+// TODO 메인홈
+// TODO 지역선택 모달
+
+// TODO 리뷰 카테고리 페이지
+// TODO 리뷰 상세 페이지
+
+// TODO 약국/병원 리스트
+// TODO 약국/병원 상세 페이지
+// TODO 리뷰 작성 페이지
+// TODO 약국/병원 정보 변경 페이지
+
+
+// TODO 마이홈
+// TODO 정보변경 페이지
+// TODO 공지/자주/문의
