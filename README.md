@@ -4,13 +4,12 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## 라이브러리
 
-A few resources to get you started if this is your first Flutter project:
+-   <a href="https://pub.dev/packages/map">map</a>: 지도 라이브러리
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   <a href="https://pub.dev/packages/map">widgetBook</a>: 시각 테스트 및 컴포넌트 재사용성을 높여주는 라이브러리
+    https://github.com/BilalShahid13/PersistentBottomNavBar
+    https://github.com/iamSahdeep/liquid_swipe_flutter
+    https://github.com/fluttercommunity/get_it
+    https://reactivex.io/
