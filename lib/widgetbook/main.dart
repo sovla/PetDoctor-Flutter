@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgetbook.dart';
+import 'app.widgetbook.dart';
 
 void main() {
   runApp(HotreloadWidgetbook());
