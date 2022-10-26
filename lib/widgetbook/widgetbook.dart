@@ -5,6 +5,10 @@ import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
 import 'package:widgetbook/widgetbook.dart';
 
+/// 위젯 설계 원칙
+/// 1. 재사용성 생각하기
+/// 2. 파라미터가 5개 이상 넘을경우 분리 생각해보기
+
 void main() {
   runApp(const HotreloadWidgetbook());
 }
@@ -33,135 +37,234 @@ class HotreloadWidgetbook extends StatelessWidget {
       ],
       categories: [
         WidgetbookCategory(
-          name: 'widgets test',
-          folders: [
-            WidgetbookFolder(
-              name: 'attributes',
-              widgets: [
-                WidgetbookComponent(
-                  name: 'Container',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Short price',
-                      builder: (context) => Container(),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Long price',
-                      builder: (context) => Container(),
-                    ),
-                  ],
-                ),
-                WidgetbookComponent(
-                  name: 'Container',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Short weight',
-                      builder: (context) => Container(
-                        width: 320,
-                      ),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Long weight',
-                      builder: (context) => Container(
-                        width: 1050,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+          name: 'Atom',
           widgets: [
             WidgetbookComponent(
-              name: 'Ingredients',
+              name: 'Inputs',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Shortl list ',
+                  name: 'PetInput',
                   builder: (context) => Container(),
                 ),
                 WidgetbookUseCase(
-                  name: 'Medium list',
+                  name: 'PetTextInput',
                   builder: (context) => Container(),
                 ),
                 WidgetbookUseCase(
-                  name: 'Long list',
+                  name: 'TitleInput',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'RoleInput',
                   builder: (context) => Container(),
                 ),
               ],
             ),
             WidgetbookComponent(
-              name: 'New tag',
+              name: 'Components',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Default',
+                  name: 'ReplyWidget',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'DropdownWidget',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'HospitalWidget',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'HospitalDetailRowWidget',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'ReviewWidget',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'ImageWidget',
                   builder: (context) => Container(),
                 ),
               ],
             ),
             WidgetbookComponent(
-              name: 'Rotated image',
+              name: 'Buttons',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Default',
-                  builder: (context) => Container(),
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'MealDetail',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Short name',
+                  name: 'CloseButton',
                   builder: (context) => Container(),
                 ),
                 WidgetbookUseCase(
-                  name: 'Long name',
+                  name: 'MoreButton',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'HamburgerButton',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'IconButton',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'PublicButton',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'ImageAddButton',
+                  builder: (context) => Container(),
+                ),
+                WidgetbookUseCase(
+                  name: 'WriteButton',
                   builder: (context) => Container(),
                 ),
               ],
             ),
           ],
         ),
-        WidgetbookCategory(
-          name: 'pages',
-          folders: [
-            WidgetbookFolder(
-              name: 'attributes',
-              widgets: [
-                WidgetbookComponent(
-                  name: 'Container',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Short price',
-                      builder: (context) => Container(),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Long price',
-                      builder: (context) => Container(),
-                    ),
-                  ],
-                ),
-                WidgetbookComponent(
-                  name: 'Container',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Short weight',
-                      builder: (context) => Container(
-                        width: 320,
-                      ),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Long weight',
-                      builder: (context) => Container(
-                        width: 1050,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+        WidgetbookCategory(name: 'Block', widgets: [
+          WidgetbookComponent(
+            name: 'Collections',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'CloseButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'MoreButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'HamburgerButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'IconButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'PublicButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'ImageAddButton',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'WriteButton',
+                builder: (context) => Container(),
+              ),
+            ],
+          ),
+        ]),
+        WidgetbookCategory(name: 'pages', widgets: [
+          WidgetbookComponent(
+            name: 'Community',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'Home',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'ReviewDetail',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'ReviewWrite',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'ReviewReport',
+                builder: (context) => Container(),
+              ),
+            ],
+          ),
+          WidgetbookComponent(
+            name: 'Hospital/Pharmacy',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'Home',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Filtering',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Review-Write',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Change-Information',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Detail-Information',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Detail-Reviews',
+                builder: (context) => Container(),
+              ),
+            ],
+          ),
+          WidgetbookComponent(
+            name: 'Home/Login/Modal',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'Home',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'LocationSetting-Modal',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Login-Modal',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'SignUp-Modal',
+                builder: (context) => Container(),
+              ),
+            ],
+          ),
+          WidgetbookComponent(
+            name: 'MyMenu',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'User-Information-Update',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Bookmarks',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Setting',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Alarm',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Notice',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'FAQ',
+                builder: (context) => Container(),
+              ),
+              WidgetbookUseCase(
+                name: 'Operation-Policy',
+                builder: (context) => Container(),
+              ),
+            ],
+          ),
+        ]),
       ],
       appInfo: AppInfo(name: 'Meal App'),
     );
