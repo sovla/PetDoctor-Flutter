@@ -93,9 +93,9 @@ ThemeBuilderFunction<CustomTheme> themeBuilder<CustomTheme>() => (
 
 @WidgetbookLocales()
 final locales = <Locale>[
-  Locale('en'),
-  Locale('de'),
-  Locale('fr'),
+  const Locale('en'),
+  const Locale('de'),
+  const Locale('fr'),
 ];
 
 @WidgetbookLocalizationDelegates()
@@ -103,7 +103,7 @@ final delegates = [];
 
 @WidgetbookApp.material(
   name: 'Meal App',
-  frames: const [
+  frames: [
     WidgetbookFrame(
       name: 'Widgetbook',
       allowsDevices: true,
@@ -133,9 +133,9 @@ class App extends StatelessWidget {
       supportedLocales: [],
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Meals'),
+          title: const Text('Meals'),
         ),
-        body: Dashboard(),
+        body: const Dashboard(),
       ),
     );
   }
@@ -154,7 +154,7 @@ class Dashboard extends StatelessWidget {
             child: Container(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
       ],
