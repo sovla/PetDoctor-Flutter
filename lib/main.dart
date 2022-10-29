@@ -22,15 +22,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Pet Doctor",
+      title: 'Pet Doctor',
       theme: getLightThemeData(),
       darkTheme: getDarkThemeData(),
-      themeMode: ThemeMode.system, 
+      themeMode: ThemeMode.system,
       // 시스템 테마를 따르는 설정
       debugShowCheckedModeBanner: false,
       // 디버그 배너 끄기
-      initialRoute: "/",
-      
+      initialRoute: '/',
     );
   }
 }

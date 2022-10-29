@@ -13,9 +13,9 @@ class AuthGuard extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (authService.isAuthenticated) {
-      return const RouteSettings(name: AppLinks.LOGIN);
+      return const RouteSettings(name: AppLinks.USER_LOGIN);
     } else {
-      return const RouteSettings(name: AppLinks.DASHBOARD);
+      return const RouteSettings(name: AppLinks.HOME);
     }
   }
 }
