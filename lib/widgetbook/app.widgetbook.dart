@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pet_doctor/page/Home/Home.dart';
 
 import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
 import 'package:pet_doctor/widgetbook/app.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as An;
+import '../atom/buttons/CloseButton.dart';
 
 /// 위젯 설계 원칙
 /// 1. 재사용성 생각하기
@@ -15,27 +17,6 @@ void main() {
   runApp(const HotreloadWidgetbook());
 }
 
-@An.WidgetbookApp.material(
-  name: 'Meal App',
-  frames: const [
-    WidgetbookFrame(
-      name: 'Widgetbook',
-      allowsDevices: true,
-    ),
-    WidgetbookFrame(
-      name: 'None',
-      allowsDevices: false,
-    ),
-  ],
-  devices: [Apple.iPhone12],
-  textScaleFactors: [
-    1,
-    2,
-    3,
-  ],
-  foldersExpanded: true,
-  widgetsExpanded: true,
-)
 class HotreloadWidgetbook extends StatelessWidget {
   const HotreloadWidgetbook({Key? key}) : super(key: key);
 
@@ -117,7 +98,7 @@ class HotreloadWidgetbook extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: 'CloseButton',
-                  builder: (context) => const CloseButton(),
+                  builder: (context) => const Pet_CloseButton(),
                 ),
                 WidgetbookUseCase(
                   name: 'MoreButton',
@@ -238,7 +219,7 @@ class HotreloadWidgetbook extends StatelessWidget {
             useCases: [
               WidgetbookUseCase(
                 name: 'Home',
-                builder: (context) => Container(),
+                builder: (context) => const HomePage(),
               ),
               WidgetbookUseCase(
                 name: 'LocationSetting-Modal',

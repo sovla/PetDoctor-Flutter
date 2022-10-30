@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CloseButton extends StatelessWidget {
+class Pet_CloseButton extends StatelessWidget {
   final double width;
   final double height;
   final Function()? onPressed;
   final Color? color;
 
-  const CloseButton({
+  const Pet_CloseButton({
     super.key,
     this.width = 20.0,
     this.height = 20.0,
