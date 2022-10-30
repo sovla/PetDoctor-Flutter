@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:pet_doctor/constants/border.dart';
 import 'package:pet_doctor/routes/links.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/routes/routes.dart';
 
 class HomePage extends StatefulWidget {
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('실시간 리뷰'),
+                const Text('실시간 리뷰'),
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -94,9 +95,12 @@ class _HomePageState extends State<HomePage> {
                     child: Wrap(
                       spacing: PaddingConstants.spaceButton,
                       children: [
-                        ElevatedButton(onPressed: () {}, child: Text("병원")),
-                        ElevatedButton(onPressed: () {}, child: Text("약국")),
-                        ElevatedButton(onPressed: () {}, child: Text("커뮤니티")),
+                        ElevatedButton(
+                            onPressed: () {}, child: const Text("병원")),
+                        ElevatedButton(
+                            onPressed: () {}, child: const Text("약국")),
+                        ElevatedButton(
+                            onPressed: () {}, child: const Text("커뮤니티")),
                       ],
                     ),
                   ),
@@ -104,8 +108,85 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(
-            width: 400,
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: PaddingConstants.mainHorizontal,
+            ),
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(PaddingConstants.spaceButton),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 50.r,
+                              height: 50.r,
+                              child: Icon(
+                                Icons.ac_unit_outlined,
+                                size: 50.r,
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("닉네임"),
+                                    Text("글작성시간"),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: PaddingConstants.subVertical,
+                                ),
+                                Text("병원/약국 이름"),
+                              ],
+                            )
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {}, icon: Icon(Icons.more_horiz))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("제목블라라라라라ㅏ라라라라라라라라라"),
+                              Text(
+                                  "제목블라라라라라ㅏ라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라라라라라")
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                            width: 75.r, height: 75.r, child: Icon(Icons.abc))
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.thumb_up_alt_outlined)),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.comment)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.remove_red_eye_sharp))
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
           )
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:pet_doctor/routes/routes.dart';
 import 'package:pet_doctor/themes/dark_theme.dart';
@@ -22,17 +23,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Pet Doctor',
-      theme: getLightThemeData(),
-      darkTheme: getDarkThemeData(),
-      themeMode: ThemeMode.system,
-      // 시스템 테마를 따르는 설정
-      debugShowCheckedModeBanner: false,
-      // 디버그 배너 끄기
-      initialRoute: '/',
-      getPages: AppRoutes.pages,
-    );
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => GetMaterialApp(
+              title: 'Pet Doctor',
+              theme: getLightThemeData(),
+              darkTheme: getDarkThemeData(),
+              themeMode: ThemeMode.system,
+              // 시스템 테마를 따르는 설정
+              debugShowCheckedModeBanner: false,
+              // 디버그 배너 끄기
+              initialRoute: '/',
+              getPages: AppRoutes.pages,
+            ));
   }
 }
 
