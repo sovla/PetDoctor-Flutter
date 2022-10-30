@@ -10,6 +10,10 @@ class UserAlarmPage extends StatefulWidget {
 class _UserAlarmPageState extends State<UserAlarmPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('UserAlarmPage')],
+      ),
+    );
   }
 }

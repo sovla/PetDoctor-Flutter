@@ -10,6 +10,10 @@ class UserBookmarkPage extends StatefulWidget {
 class _UserBookmarkPageState extends State<UserBookmarkPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('UserBookmarkPage')],
+      ),
+    );
   }
 }

@@ -10,6 +10,10 @@ class AppNoticePage extends StatefulWidget {
 class _AppNoticePageState extends State<AppNoticePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('AppNoticePage')],
+      ),
+    );
   }
 }

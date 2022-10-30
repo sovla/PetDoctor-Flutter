@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:pet_doctor/routes/links.dart';
 
 class PharmacyReviewPage extends StatefulWidget {
   const PharmacyReviewPage({super.key});
@@ -10,6 +12,12 @@ class PharmacyReviewPage extends StatefulWidget {
 class _PharmacyReviewPageState extends State<PharmacyReviewPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          const Text('PharmacyReview'),
+        ],
+      ),
+    );
   }
 }

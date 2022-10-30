@@ -10,6 +10,12 @@ class ReviewDetailPage extends StatefulWidget {
 class _ReviewDetailPageState extends State<ReviewDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          const Text('ReviewDetailPage'),
+        ],
+      ),
+    );
   }
 }

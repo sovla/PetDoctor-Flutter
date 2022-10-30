@@ -10,6 +10,10 @@ class UserUpdatePage extends StatefulWidget {
 class _UserUpdatePageState extends State<UserUpdatePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('UserUpdatePage')],
+      ),
+    );
   }
 }

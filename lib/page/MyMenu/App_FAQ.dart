@@ -10,6 +10,10 @@ class AppFAQPage extends StatefulWidget {
 class _AppFAQPageState extends State<AppFAQPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('AppFAQPage')],
+      ),
+    );
   }
 }

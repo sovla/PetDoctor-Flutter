@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:pet_doctor/routes/routes.dart';
 import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
 import 'package:pet_doctor/widgetbook/app.widgetbook.dart';
@@ -7,7 +8,7 @@ import 'package:pet_doctor/widgetbook/app.widgetbook.dart';
 enum runTool { isDev, isWidgetBook }
 
 void main() {
-  var test = runTool.isWidgetBook;
+  var test = runTool.isDev;
 
   if (test == runTool.isDev) {
     runApp(const MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // 디버그 배너 끄기
       initialRoute: '/',
+      getPages: AppRoutes.pages,
     );
   }
 }

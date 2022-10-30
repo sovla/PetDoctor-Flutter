@@ -10,6 +10,10 @@ class AppOperationPolicyPage extends StatefulWidget {
 class _AppOperationPolicyPageState extends State<AppOperationPolicyPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('AppOperationPolicyPage')],
+      ),
+    );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ReviewWritePage extends StatefulWidget {
@@ -11,6 +10,12 @@ class ReviewWritePage extends StatefulWidget {
 class _ReviewWritePageState extends State<ReviewWritePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          const Text('ReviewWritePage'),
+        ],
+      ),
+    );
   }
 }

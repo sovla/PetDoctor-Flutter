@@ -1,16 +1,17 @@
 class AppLinks {
   static const HOME = '/';
-  static const COMMUNITY_HOME = '/products';
+  static const COMMUNITY_HOME = '/community';
   static const REVIEW_WRITE = '/review/write';
   static const REVIEW_DETAIL = '/review/detail';
   static const HOSPITAL_DETAIL = '/hospital/detail';
-  static const HOSPITAL_HOME = '/hospital/home';
+  static const HOSPITAL_HOME = '/hospital';
   static const HOSPITAL_REVIEW = '/hospital/review';
   static const HOSPITAL_UPDATE = '/hospital/update';
   static const PHARMACY_DETAIL = '/pharmacy/detail';
-  static const PHARMACY_HOME = '/pharmacy/home';
+  static const PHARMACY_HOME = '/pharmacy';
   static const PHARMACY_REVIEW = '/pharmacy/review';
   static const PHARMACY_UPDATE = '/pharmacy/update';
+  static const MYMENU_HOME = '/mymenu';
   static const APP_FAQ = '/app/faq';
   static const APP_NOTICE = '/app/notice';
   static const APP_OPERATIONPOLICY = '/app/operationpolicy';

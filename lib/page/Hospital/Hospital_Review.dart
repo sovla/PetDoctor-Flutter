@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:pet_doctor/routes/links.dart';
 
 class HospitalReviewPage extends StatefulWidget {
   const HospitalReviewPage({super.key});
@@ -10,6 +12,10 @@ class HospitalReviewPage extends StatefulWidget {
 class _HospitalReviewPageState extends State<HospitalReviewPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('HospitalReview')],
+      ),
+    );
   }
 }

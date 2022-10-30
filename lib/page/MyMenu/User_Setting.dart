@@ -10,6 +10,10 @@ class UserSettingPage extends StatefulWidget {
 class _UserSettingPageState extends State<UserSettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [const Text('UserSettingPage')],
+      ),
+    );
   }
 }
