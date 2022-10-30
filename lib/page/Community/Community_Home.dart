@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:pet_doctor/routes/routes.dart';
+import 'package:pet_doctor/atom/buttons/MoreButton.dart';
+import 'package:pet_doctor/constants/border.dart';
+import 'package:pet_doctor/constants/color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_doctor/page/Home/Home.dart';
 
 class CommunityHomePage extends StatefulWidget {
   const CommunityHomePage({super.key});
@@ -13,15 +16,78 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          width: 200.r,
+          height: 50,
+          decoration: BoxDecoration(
+              color: ColorConstants.backgroundColorLight,
+              borderRadius:
+                  BorderRadius.circular(BorderConstants.borderRadius)),
+          child: TextField(),
+        ),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
+      ),
       body: Column(
         children: [
-          const Text('CommunityHomePage'),
-          ...AppRoutes.communityRoutes
-              .map(
-                (e) => ElevatedButton(
-                    onPressed: () => Get.toNamed(e.name), child: Text(e.name)),
-              )
-              .toList(),
+          Categorys(
+            buttons: [
+              ElevatedButton(onPressed: () {}, child: const Text('병원')),
+              ElevatedButton(onPressed: () {}, child: const Text('약국')),
+              ElevatedButton(onPressed: () {}, child: const Text('인기')),
+              ElevatedButton(onPressed: () {}, child: const Text('자유')),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: PaddingConstants.mainHorizontal),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                PopupMenuButton(
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(child: Text("최신순")),
+                      PopupMenuItem(child: Text("최신순"))
+                    ];
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: ColorConstants.backgroundColorDark)),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          PaddingConstants.buttonHorizontal,
+                          PaddingConstants.buttonVertical,
+                          0,
+                          PaddingConstants.buttonVertical),
+                      child: Row(
+                        children: [Text("최신순"), Icon(Icons.arrow_drop_down)],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                if (index < 9) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: PaddingConstants.mainHorizontal,
+                        vertical: PaddingConstants.subVertical),
+                    child: ReviewComponent(),
+                  );
+                } else {
+                  return MoreButton();
+                }
+              },
+              itemCount: 10 + 1,
+            ),
+          )
         ],
       ),
     );

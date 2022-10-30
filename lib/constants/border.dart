@@ -13,4 +13,6 @@ class PaddingConstants {
   static double subVertical = 10;
   // 아이콘 사이 간격용
   static double iconVertical = 8;
+  static double buttonHorizontal = 10;
+  static double buttonVertical = 5;
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/instance_manager.dart';
 import 'package:pet_doctor/routes/routes.dart';
+import 'package:pet_doctor/state/bottomNavigationBar.dart';
 import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
 import 'package:pet_doctor/widgetbook/app.widgetbook.dart';
@@ -37,6 +39,10 @@ class MyApp extends StatelessWidget {
               // 디버그 배너 끄기
               initialRoute: '/',
               getPages: AppRoutes.pages,
+
+              initialBinding: BindingsBuilder(() {
+                Get.lazyPut(() => BottomNavigationBarController());
+              }),
             ));
   }
 }
