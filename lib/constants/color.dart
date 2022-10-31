@@ -6,4 +6,7 @@ class ColorConstants {
   static Color cardColor = const Color(0xFF2A2C31);
   static Color primaryColor = const Color(0xFF7C40FF);
   static Color lightFontColor = const Color(0xFF1E2026);
+  static Color backgroundColorGray = const Color(0x30AAAAAA);
+
+  static Color borderGrayColor = const Color(0xFFAAAAAA);
 }
