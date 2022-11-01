@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
+        designSize: const Size(360, 720),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => GetMaterialApp(
@@ -59,9 +59,6 @@ class MyApp extends StatelessWidget {
 // TODO 회원가입
 // TODO 메인홈
 // TODO 지역선택 모달
-
-// TODO 리뷰 카테고리 페이지
-// TODO 리뷰 상세 페이지
 
 // TODO 약국/병원 리스트
 // TODO 약국/병원 상세 페이지

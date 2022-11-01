@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pet_doctor/constants/border.dart';
+import 'package:pet_doctor/constants/color.dart';
+import 'package:pet_doctor/page/Home/LocationSettingBottomSheet.dart';
 import 'package:pet_doctor/routes/links.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/routes/routes.dart';
@@ -20,6 +24,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           leading: InkWell(
+            onTap: () async {
+              await showBarModalBottomSheet(
+                expand: false,
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) => const Pet_LocationSetting(),
+              );
+            },
             child: Row(
               children: [
                 const Icon(Icons.location_on_outlined, size: 25.0),
@@ -102,7 +114,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         bottomNavigationBar:
-            BottomNavigationBarController().publicNavigationBar());
+            Get.find<BottomNavigationBarController>().publicNavigationBar());
   }
 
   Widget Pet_ColumnIconButton({
@@ -124,6 +136,95 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Pet_LocationSetting extends StatelessWidget {
+  const Pet_LocationSetting({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 600.r,
+      color: ColorConstants.backgroundColorWhite,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: PaddingConstants.mainHorizontal,
+            vertical: PaddingConstants.subVertical),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('위치설정'),
+            Row(
+              children: [
+                const Text('현재 내 위치로'),
+                const Icon(Icons.my_location_sharp)
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Pet_WheelPicker(
+                  title: '시',
+                ),
+                const Pet_WheelPicker(
+                  title: '군',
+                ),
+                const Pet_WheelPicker(
+                  title: '구',
+                ),
+              ],
+            ),
+            SizedBox(
+                width: double.infinity,
+                height: 40.r,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text('확인')))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Pet_WheelPicker extends StatelessWidget {
+  const Pet_WheelPicker({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+        ),
+        Container(
+          width: 100.r,
+          height: 300.r,
+          decoration: BoxDecoration(
+              color: ColorConstants.backgroundColorGray,
+              borderRadius: BorderRadius.circular(BorderConstants.borderRadius),
+              border:
+                  Border.all(color: ColorConstants.borderGrayColor, width: 1)),
+          child: CupertinoPicker(
+              itemExtent: 100.r,
+              looping: true,
+              useMagnifier: true,
+              onSelectedItemChanged: (index) {},
+              selectionOverlay: Container(),
+              children: [
+                SizedBox(
+                    height: 80.r, child: const Center(child: Text('item1'))),
+              ]),
+        ),
+      ],
     );
   }
 }
