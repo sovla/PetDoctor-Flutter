@@ -6,6 +6,8 @@ import 'package:pet_doctor/routes/links.dart';
 class BottomNavigationBarController extends GetxController {
   RxInt currentIndex = 0.obs;
 
+
+
   void onItemTapped(int index) {
     currentIndex = RxInt(index);
   }

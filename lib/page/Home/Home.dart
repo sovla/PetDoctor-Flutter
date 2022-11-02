@@ -22,99 +22,166 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: InkWell(
-            onTap: () async {
-              await showBarModalBottomSheet(
-                expand: false,
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (context) => const Pet_LocationSetting(),
-              );
-            },
-            child: Row(
-              children: [
-                const Icon(Icons.location_on_outlined, size: 25.0),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  '위치 설정',
-                  style: Get.textTheme.subtitle1,
-                ),
-              ],
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () async {
+            await showBarModalBottomSheet(
+              expand: false,
+              context: context,
+              backgroundColor: Colors.transparent,
+              builder: (context) => const Pet_LocationSetting(),
+            );
+          },
+          child: Row(
+            children: [
+              const Icon(Icons.location_on_outlined, size: 25.0),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                '위치 설정',
+                style: Get.textTheme.subtitle1,
+              ),
+            ],
+          ),
+        ),
+        leadingWidth: 112,
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('우리 댕냥이에게 안성맞춤\nPetDoctor에게\n안심하고 맡기세요!'),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: PaddingConstants.mainHorizontal,
+                vertical: PaddingConstants.subVertical),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(BorderConstants.borderRadius),
+                  border: Border.all(width: 1, color: Get.theme.primaryColor)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Pet_ColumnIconButton(
+                      icon: const Icon(Icons.local_hospital_outlined),
+                      text: const Text('병원')),
+                  Pet_ColumnIconButton(
+                      icon: const Icon(Icons.local_pharmacy_outlined),
+                      text: const Text('약국')),
+                  Pet_ColumnIconButton(
+                      icon: const Icon(Icons.window), text: const Text('커뮤니티')),
+                ],
+              ),
             ),
           ),
-          leadingWidth: 112,
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.person))
-          ],
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('우리 댕냥이에게 안성맞춤\nPetDoctor에게\n안심하고 맡기세요!'),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: PaddingConstants.mainHorizontal,
-                  vertical: PaddingConstants.subVertical),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: PaddingConstants.mainHorizontal,
+                vertical: PaddingConstants.subVertical),
+            child: InkWell(
+              onTap: () {},
               child: Container(
+                height: 40,
                 decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(BorderConstants.borderRadius),
+                    borderRadius: BorderRadius.circular(
+                        BorderConstants.smallButtonRadius),
                     border:
                         Border.all(width: 1, color: Get.theme.primaryColor)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Pet_ColumnIconButton(
-                        icon: const Icon(Icons.local_hospital_outlined),
-                        text: const Text('병원')),
-                    Pet_ColumnIconButton(
-                        icon: const Icon(Icons.local_pharmacy_outlined),
-                        text: const Text('약국')),
-                    Pet_ColumnIconButton(
-                        icon: const Icon(Icons.window),
-                        text: const Text('커뮤니티')),
-                  ],
-                ),
+                child: const Center(child: Text('내가 최근 본 병원/약국')),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: PaddingConstants.mainHorizontal,
-                  vertical: PaddingConstants.subVertical),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          BorderConstants.smallButtonRadius),
-                      border:
-                          Border.all(width: 1, color: Get.theme.primaryColor)),
-                  child: const Center(child: Text('내가 최근 본 병원/약국')),
-                ),
-              ),
+          ),
+          Categorys(
+            title: const Text('실시간 리뷰'),
+            buttons: [
+              ElevatedButton(onPressed: () {}, child: const Text('병원')),
+              ElevatedButton(onPressed: () {}, child: const Text('약국')),
+              ElevatedButton(onPressed: () {}, child: const Text('커뮤니티')),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: PaddingConstants.mainHorizontal,
             ),
-            Categorys(
-              title: const Text('실시간 리뷰'),
-              buttons: [
-                ElevatedButton(onPressed: () {}, child: const Text('병원')),
-                ElevatedButton(onPressed: () {}, child: const Text('약국')),
-                ElevatedButton(onPressed: () {}, child: const Text('커뮤니티')),
+            child: const ReviewComponent(),
+          )
+        ],
+      ),
+      bottomNavigationBar:
+          Get.find<BottomNavigationBarController>().publicNavigationBar(),
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            // 프로젝트에 assets 폴더 생성 후 이미지 2개 넣기
+            // pubspec.yaml 파일에 assets 주석에 이미지 추가하기
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                // 현재 계정 이미지 set
+                backgroundImage: AssetImage('assets/profile.png'),
+                backgroundColor: Colors.white,
+              ),
+              otherAccountsPictures: <Widget>[
+                // 다른 계정 이미지[] set
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage('assets/profile2.png'),
+                ),
+                // CircleAvatar(
+                //   backgroundColor: Colors.white,
+                //   backgroundImage: AssetImage('assets/profile2.png'),
+                // )
               ],
+              accountName: Text('GANGPRO'),
+              accountEmail: Text('gangpro@email.com'),
+              onDetailsPressed: () {
+                print('arrow is clicked');
+              },
+              decoration: BoxDecoration(
+                  color: Colors.red[200],
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(40.0),
+                      bottomRight: Radius.circular(40.0))),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: PaddingConstants.mainHorizontal,
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey[850],
               ),
-              child: const ReviewComponent(),
-            )
+              title: Text('Home'),
+              onTap: () {
+                print('Home is clicked');
+              },
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.grey[850],
+              ),
+              title: Text('Setting'),
+              onTap: () {
+                print('Setting is clicked');
+              },
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.question_answer,
+                color: Colors.grey[850],
+              ),
+              title: Text('Q&A'),
+              onTap: () {
+                print('Q&A is clicked');
+              },
+              trailing: Icon(Icons.add),
+            ),
           ],
         ),
-        bottomNavigationBar:
-            Get.find<BottomNavigationBarController>().publicNavigationBar());
+      ),
+    );
   }
 
   Widget Pet_ColumnIconButton({

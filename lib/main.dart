@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -38,6 +40,9 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               // 디버그 배너 끄기
               initialRoute: '/',
+              routingCallback: (value) {
+                inspect(value);
+              },
               getPages: AppRoutes.pages,
 
               initialBinding: BindingsBuilder(() {
