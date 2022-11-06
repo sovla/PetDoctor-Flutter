@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HambergerButton extends StatelessWidget {
+class Pet_HambergerButton extends StatelessWidget {
   final double width;
   final double height;
   final Function()? onPressed;
   final Color? color;
 
-  const HambergerButton({
+  const Pet_HambergerButton({
     super.key,
     this.width = 20.0,
     this.height = 20.0,

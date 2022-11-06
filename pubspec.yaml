@@ -42,7 +42,7 @@ dependencies:
   carousel_slider: ^4.1.1
   modal_bottom_sheet: ^2.1.2
   flutter_map: ^3.0.0
-  flutter_naver_map:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

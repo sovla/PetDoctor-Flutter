@@ -1,15 +1,15 @@
+// Library ---------------
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_doctor/atom/widgets/ReviewWidget.dart';
+// Widgets ---------------
+import 'package:pet_doctor/state/bottomNavigationBar.dart';
 import 'package:pet_doctor/constants/border.dart';
 import 'package:pet_doctor/constants/color.dart';
-import 'package:pet_doctor/page/Home/LocationSettingBottomSheet.dart';
 import 'package:pet_doctor/routes/links.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pet_doctor/routes/routes.dart';
-import 'package:pet_doctor/state/bottomNavigationBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,32 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () async {
-            await showBarModalBottomSheet(
-              expand: false,
-              context: context,
-              backgroundColor: Colors.transparent,
-              builder: (context) => const Pet_LocationSetting(),
-            );
-          },
-          child: Row(
-            children: [
-              const Icon(Icons.location_on_outlined, size: 25.0),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                '위치 설정',
-                style: Get.textTheme.subtitle1,
-              ),
-            ],
-          ),
-        ),
-        leadingWidth: 112,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
-      ),
+      appBar: const Pet_AppBar().build(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -105,7 +80,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.symmetric(
               horizontal: PaddingConstants.mainHorizontal,
             ),
-            child: const ReviewComponent(),
+            child: const Pet_ReviewWidget(),
           )
         ],
       ),
@@ -118,14 +93,14 @@ class _HomePageState extends State<HomePage> {
             // 프로젝트에 assets 폴더 생성 후 이미지 2개 넣기
             // pubspec.yaml 파일에 assets 주석에 이미지 추가하기
             UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
+              currentAccountPicture: const CircleAvatar(
                 // 현재 계정 이미지 set
                 backgroundImage: AssetImage('assets/profile.png'),
                 backgroundColor: Colors.white,
               ),
               otherAccountsPictures: <Widget>[
                 // 다른 계정 이미지[] set
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   backgroundImage: AssetImage('assets/profile2.png'),
                 ),
@@ -134,14 +109,14 @@ class _HomePageState extends State<HomePage> {
                 //   backgroundImage: AssetImage('assets/profile2.png'),
                 // )
               ],
-              accountName: Text('GANGPRO'),
-              accountEmail: Text('gangpro@email.com'),
+              accountName: const Text('GANGPRO'),
+              accountEmail: const Text('gangpro@email.com'),
               onDetailsPressed: () {
                 print('arrow is clicked');
               },
               decoration: BoxDecoration(
                   color: Colors.red[200],
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(40.0),
                       bottomRight: Radius.circular(40.0))),
             ),
@@ -150,33 +125,33 @@ class _HomePageState extends State<HomePage> {
                 Icons.home,
                 color: Colors.grey[850],
               ),
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 print('Home is clicked');
               },
-              trailing: Icon(Icons.add),
+              trailing: const Icon(Icons.add),
             ),
             ListTile(
               leading: Icon(
                 Icons.settings,
                 color: Colors.grey[850],
               ),
-              title: Text('Setting'),
+              title: const Text('Setting'),
               onTap: () {
                 print('Setting is clicked');
               },
-              trailing: Icon(Icons.add),
+              trailing: const Icon(Icons.add),
             ),
             ListTile(
               leading: Icon(
                 Icons.question_answer,
                 color: Colors.grey[850],
               ),
-              title: Text('Q&A'),
+              title: const Text('Q&A'),
               onTap: () {
                 print('Q&A is clicked');
               },
-              trailing: Icon(Icons.add),
+              trailing: const Icon(Icons.add),
             ),
           ],
         ),
@@ -203,6 +178,42 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Pet_AppBar extends StatelessWidget {
+  const Pet_AppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  PreferredSizeWidget build(BuildContext context) {
+    return AppBar(
+      leading: InkWell(
+        onTap: () async {
+          await showBarModalBottomSheet(
+            expand: false,
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (context) => const Pet_LocationSetting(),
+          );
+        },
+        child: Row(
+          children: [
+            const Icon(Icons.location_on_outlined, size: 25.0),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              '위치 설정',
+              style: Get.textTheme.subtitle1,
+            ),
+          ],
+        ),
+      ),
+      leadingWidth: 112,
+      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
     );
   }
 }
@@ -324,94 +335,6 @@ class Categorys extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class ReviewComponent extends StatelessWidget {
-  const ReviewComponent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Get.toNamed(AppLinks.REVIEW_DETAIL),
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(PaddingConstants.spaceButton),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 50.r,
-                        height: 50.r,
-                        child: Icon(
-                          Icons.ac_unit_outlined,
-                          size: 50.r,
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              const Text('닉네임'),
-                              const Text('글작성시간'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: PaddingConstants.subVertical,
-                          ),
-                          const Text('병원/약국 이름'),
-                        ],
-                      )
-                    ],
-                  ),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.more_horiz))
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('제목블라라라라라ㅏ라라라라라라라라라'),
-                        const Text(
-                            '제목블라라라라라ㅏ라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라제목블라라라라라ㅏ라라라라라라라라라라라라라')
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                      width: 75.r, height: 75.r, child: const Icon(Icons.abc))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.thumb_up_alt_outlined)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.comment)),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.remove_red_eye_sharp))
-                ],
-              )
-            ],
-          ),
-        ),
       ),
     );
   }

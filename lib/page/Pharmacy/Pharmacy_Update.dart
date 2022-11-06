@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:pet_doctor/routes/links.dart';
 
 class PharmacyUpdatePage extends StatefulWidget {
   const PharmacyUpdatePage({super.key});

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:pet_doctor/atom/buttons/MoreButton.dart';
+import 'package:pet_doctor/atom/buttons/PopupMenuButton.dart';
+import 'package:pet_doctor/atom/widgets/ReviewWidget.dart';
 import 'package:pet_doctor/constants/border.dart';
 import 'package:pet_doctor/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +57,7 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
                     padding: EdgeInsets.symmetric(
                         horizontal: PaddingConstants.mainHorizontal,
                         vertical: PaddingConstants.subVertical),
-                    child: ReviewComponent(),
+                    child: Pet_ReviewWidget(),
                   );
                 } else {
                   return MoreButton();
@@ -66,44 +68,6 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
           )
         ],
       ),
-    );
-  }
-}
-
-class Pet_PopupMenuButton extends StatelessWidget {
-  const Pet_PopupMenuButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        PopupMenuButton(
-          itemBuilder: (context) {
-            return [
-              PopupMenuItem(child: Text("최신순")),
-              PopupMenuItem(child: Text("최신순"))
-            ];
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: ColorConstants.backgroundColorDark)),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  PaddingConstants.buttonHorizontal,
-                  PaddingConstants.buttonVertical,
-                  0,
-                  PaddingConstants.buttonVertical),
-              child: Row(
-                children: [Text("최신순"), Icon(Icons.arrow_drop_down)],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

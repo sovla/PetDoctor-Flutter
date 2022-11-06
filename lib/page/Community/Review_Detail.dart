@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pet_doctor/atom/buttons/PopupMenuButton.dart';
+import 'package:pet_doctor/atom/widgets/ReplyWidget.dart';
+import 'package:pet_doctor/atom/widgets/Swiper.dart';
 import 'package:pet_doctor/constants/border.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/constants/color.dart';
@@ -116,7 +119,7 @@ class _ReviewDetailPageState extends State<ReviewDetailPage> {
                 1,
                 2,
                 3,
-              ].map((e) => ReplyComponent()).toList()),
+              ].map((e) => Pet_ReplyWidget()).toList()),
             )
           ],
         ),
@@ -158,115 +161,5 @@ class Pet_TextFormField extends StatelessWidget {
               horizontal: PaddingConstants.buttonHorizontal),
           child: Center(child: TextField()),
         ));
-  }
-}
-
-class ReplyComponent extends StatelessWidget {
-  const ReplyComponent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: ColorConstants.borderGrayColor)),
-      child: ConstrainedBox(
-        constraints:
-            BoxConstraints(minHeight: 100.r, minWidth: double.infinity),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: PaddingConstants.mainHorizontal,
-              vertical: PaddingConstants.buttonVertical),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Wrap(
-                    spacing: PaddingConstants.spaceButton,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Text('닉네임'),
-                      Text('닉네임'),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.thumb_up_alt_outlined))
-                    ],
-                  ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
-                ],
-              ),
-              Text("내욧ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅁㅇㄴㅁㅇㅁㄴㅇㅎㅁㄴㅇㅁㄴ허ㅗㅇ허몬오ㅓㅁㄴㅎ오ㅓㅎㅁ노ㅓㅇ")
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Swiper extends StatelessWidget {
-  final CarouselController controller;
-  final List<String>? imageList;
-
-  const Swiper({Key? key, required this.controller, this.imageList})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CarouselSlider(
-      carouselController: controller,
-      options: CarouselOptions(
-        height: 200.r,
-        viewportFraction: 1,
-      ),
-      items: [1, 2, 3, 4, 5].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              child: Container(
-                margin: const EdgeInsets.all(5.0),
-                child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    child: Stack(
-                      children: <Widget>[
-                        Image.asset("assets/images/dummy.jpg",
-                            fit: BoxFit.cover, width: 320.r),
-                        Positioned(
-                          bottom: 0.0,
-                          left: 0.0,
-                          right: 0.0,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromARGB(200, 0, 0, 0),
-                                  Color.fromARGB(0, 0, 0, 0)
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                              ),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 20.0),
-                            child: Text(
-                              'No. ${i} image',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-            );
-          },
-        );
-      }).toList(),
-    );
   }
 }

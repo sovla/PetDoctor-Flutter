@@ -46,7 +46,7 @@ class MyMenuHomePage extends StatelessWidget {
               Icons.home,
               color: Colors.grey[850],
             ),
-            title: Text('Home'),
+            title: Text('내 정보 변경'),
             onTap: () {
               print('Home is clicked');
             },
@@ -57,7 +57,7 @@ class MyMenuHomePage extends StatelessWidget {
               Icons.settings,
               color: Colors.grey[850],
             ),
-            title: Text('Setting'),
+            title: Text('설정'),
             onTap: () {
               print('Setting is clicked');
             },
@@ -65,10 +65,54 @@ class MyMenuHomePage extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.question_answer,
+              Icons.bookmark,
               color: Colors.grey[850],
             ),
-            title: Text('Q&A'),
+            title: Text('북마크'),
+            onTap: () {
+              print('Q&A is clicked');
+            },
+            trailing: Icon(Icons.add),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.notifications_none,
+              color: Colors.grey[850],
+            ),
+            title: Text('알림'),
+            onTap: () {
+              print('Q&A is clicked');
+            },
+            trailing: Icon(Icons.add),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.check_sharp,
+              color: Colors.grey[850],
+            ),
+            title: Text('공지사항'),
+            onTap: () {
+              print('Q&A is clicked');
+            },
+            trailing: Icon(Icons.add),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.question_mark,
+              color: Colors.grey[850],
+            ),
+            title: Text('자주묻는질문'),
+            onTap: () {
+              print('Q&A is clicked');
+            },
+            trailing: Icon(Icons.add),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.library_books_outlined,
+              color: Colors.grey[850],
+            ),
+            title: Text('운영정책'),
             onTap: () {
               print('Q&A is clicked');
             },

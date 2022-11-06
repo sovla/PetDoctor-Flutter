@@ -1,10 +1,22 @@
+// Library ---------------
 import 'dart:async';
 import 'dart:io';
-
+import 'dart:math';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/plugin_api.dart';
-import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:pet_doctor/atom/buttons/PopupMenuButton.dart';
+import 'package:pet_doctor/atom/widgets/FacilityWidget.dart';
+import 'package:pet_doctor/constants/border.dart';
+import 'package:pet_doctor/constants/color.dart';
+import 'package:pet_doctor/page/Community/Community_Home.dart';
+// Widgets ---------------
+
+import 'package:pet_doctor/page/Home/Home.dart';
+import 'package:pet_doctor/routes/links.dart';
 
 import '../../state/bottomNavigationBar.dart';
 
@@ -19,7 +31,7 @@ class _HospitalHomePageState extends State<HospitalHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Pet_MapListView(),
+        body: const Pet_MapListView(),
         bottomNavigationBar:
             Get.find<BottomNavigationBarController>().publicNavigationBar());
   }
@@ -37,165 +49,133 @@ class Pet_MapListView extends StatefulWidget {
 class _Pet_MapListViewState extends State<Pet_MapListView> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Completer<NaverMapController> _controller = Completer();
+  late List<Marker> _markers;
+  final Random _random = Random();
 
-  MapType _mapType = MapType.Basic;
+  @override
+  void initState() {
+    super.initState();
+    _markers = [];
+    _addMarker('key1');
+    _addMarker('key2');
+    _addMarker('key3');
+    _addMarker('key4');
+    _addMarker('key5');
+    _addMarker('key6');
+    _addMarker('key7');
+    _addMarker('key8');
+    _addMarker('key9');
+    _addMarker('key10');
+  }
 
-  LocationTrackingMode _trackingMode = LocationTrackingMode.NoFollow;
+  void _addMarker(String key) {
+    _markers.add(Marker(
+        width: 40,
+        height: 40,
+        point: LatLng(
+            _random.nextDouble() * 10 + 48, _random.nextDouble() * 10 - 6),
+        builder: (ctx) => const _ColorMarker(),
+        key: ValueKey(key)));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 720,
-      child: NaverMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(37.566570, 126.978442),
-          zoom: 17,
-        ),
-        onMapCreated: onMapCreated,
-        mapType: _mapType,
-        initLocationTrackingMode: _trackingMode,
-        locationButtonEnable: true,
-        indoorEnable: true,
-        onCameraChange: _onCameraChange,
-        onCameraIdle: _onCameraIdle,
-        onMapTap: _onMapTap,
-        onMapLongTap: _onMapLongTap,
-        onMapDoubleTap: _onMapDoubleTap,
-        onMapTwoFingerTap: _onMapTwoFingerTap,
-        onSymbolTap: _onSymbolTap,
-        maxZoom: 17,
-        minZoom: 12,
-        useSurface: false,
-        logoClickEnabled: true,
-      ),
-    );
-  }
-
-  _onMapTap(LatLng position) async {
-    await (await _controller.future).moveCamera(
-        CameraUpdate.toCameraPosition(CameraPosition(target: position)),
-        animationDuration: 1500);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content:
-          Text('[onTap] lat: ${position.latitude}, lon: ${position.longitude}'),
-      duration: Duration(milliseconds: 500),
-      backgroundColor: Colors.black,
-    ));
-  }
-
-  _onMapLongTap(LatLng position) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          '[onLongTap] lat: ${position.latitude}, lon: ${position.longitude}'),
-      duration: Duration(milliseconds: 500),
-      backgroundColor: Colors.black,
-    ));
-  }
-
-  _onMapDoubleTap(LatLng position) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          '[onDoubleTap] lat: ${position.latitude}, lon: ${position.longitude}'),
-      duration: Duration(milliseconds: 500),
-      backgroundColor: Colors.black,
-    ));
-  }
-
-  _onMapTwoFingerTap(LatLng position) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          '[onTwoFingerTap] lat: ${position.latitude}, lon: ${position.longitude}'),
-      duration: Duration(milliseconds: 500),
-      backgroundColor: Colors.black,
-    ));
-  }
-
-  _onSymbolTap(LatLng? position, String? caption) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          '[onSymbolTap] caption: $caption, lat: ${position?.latitude}, lon: ${position?.longitude}'),
-      duration: Duration(milliseconds: 500),
-      backgroundColor: Colors.black,
-    ));
-  }
-
-  _mapTypeSelector() {
-    return SizedBox(
-      height: kToolbarHeight,
-      child: ListView.separated(
-        itemCount: MapType.values.length,
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (_, __) => SizedBox(width: 16),
-        itemBuilder: (_, index) {
-          final type = MapType.values[index];
-          String title;
-          switch (type) {
-            case MapType.Basic:
-              title = '기본';
-              break;
-            case MapType.Navi:
-              title = '내비';
-              break;
-            case MapType.Satellite:
-              title = '위성';
-              break;
-            case MapType.Hybrid:
-              title = '위성혼합';
-              break;
-            case MapType.Terrain:
-              title = '지형도';
-              break;
-          }
-
-          return GestureDetector(
-            onTap: () => _onTapTypeSelector(type),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 3)]),
-              margin: EdgeInsets.only(bottom: 16),
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-              child: Text(
-                title,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  _trackingModeSelector() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: GestureDetector(
-        onTap: _onTapTakeSnapShot,
-        child: Container(
-          margin: EdgeInsets.only(right: 16, bottom: 48),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 2,
-                )
-              ]),
-          padding: EdgeInsets.all(12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                Icons.photo_camera,
-                color: Colors.black54,
+    return SafeArea(
+      child: Scaffold(
+        appBar: const Pet_AppBar().build(context),
+        body: Container(
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: FlutterMap(
+                  options: MapOptions(
+                    center: LatLng(51.5, -0.09),
+                    zoom: 5,
+                  ),
+                  nonRotatedChildren: [
+                    Container(
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          const TextField(),
+                          Categorys(
+                              buttons: [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            5,
+                            4,
+                            45,
+                            5,
+                            5,
+                          ]
+                                  .map((e) => ElevatedButton(
+                                      onPressed: () {
+                                        showBarModalBottomSheet(
+                                            expand: false,
+                                            context: context,
+                                            barrierColor:
+                                                ColorConstants.bottomSheetDart,
+                                            backgroundColor:
+                                                ColorConstants.bottomSheetDart,
+                                            builder: (context) => Container(
+                                                  height: 400.r,
+                                                  color: ColorConstants
+                                                      .backgroundColorWhite,
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Pet_PopupMenuButton(),
+                                                        ],
+                                                      ),
+                                                      Expanded(
+                                                        child: ListView.builder(
+                                                          shrinkWrap: true,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            var name = "약국이름";
+                                                            var category = "병원";
+                                                            var openDays =
+                                                                "월요일 오전 10:00 ~ 오후 04:00";
+                                                            var distint = 3.72;
+                                                            var address =
+                                                                "부산진구 거제대로 60번길 15 메종모시기";
+                                                            return Pet_FacilityWidget(
+                                                                name: name,
+                                                                category:
+                                                                    category,
+                                                                openDays:
+                                                                    openDays,
+                                                                distint:
+                                                                    distint,
+                                                                address:
+                                                                    address);
+                                                          },
+                                                          itemCount: 10,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ));
+                                      },
+                                      child: Text(e.toString())))
+                                  .toList())
+                        ],
+                      ),
+                    )
+                  ],
+                  children: [
+                    TileLayer(
+                      urlTemplate:
+                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+                    ),
+                    MarkerLayer(markers: _markers),
+                  ],
+                ),
               ),
             ],
           ),
@@ -203,56 +183,50 @@ class _Pet_MapListViewState extends State<Pet_MapListView> {
       ),
     );
   }
+}
 
-  /// 지도 생성 완료시
-  void onMapCreated(NaverMapController controller) {
-    if (_controller.isCompleted) _controller = Completer();
-    _controller.complete(controller);
+class _ColorMarker extends StatefulWidget {
+  const _ColorMarker({Key? key}) : super(key: key);
+
+  @override
+  _ColorMarkerState createState() => _ColorMarkerState();
+}
+
+class _ColorMarkerState extends State<_ColorMarker> {
+  late final Color color;
+
+  @override
+  void initState() {
+    super.initState();
+    color = _ColorGenerator.getColor();
   }
 
-  /// 지도 유형 선택시
-  void _onTapTypeSelector(MapType type) async {
-    if (_mapType != type) {
-      setState(() {
-        _mapType = type;
-      });
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: color);
   }
+}
 
-  /// my location button
-  // void _onTapLocation() async {
-  //   final controller = await _controller.future;
-  //   controller.setLocationTrackingMode(LocationTrackingMode.Follow);
-  // }
+class _ColorGenerator {
+  static List<Color> colorOptions = [
+    Colors.blue,
+    Colors.red,
+    Colors.green,
+    Colors.yellow,
+    Colors.purple,
+    Colors.orange,
+    Colors.indigo,
+    Colors.amber,
+    Colors.black,
+    Colors.white,
+    Colors.brown,
+    Colors.pink,
+    Colors.cyan
+  ];
 
-  void _onCameraChange(
-      LatLng? latLng, CameraChangeReason reason, bool? isAnimated) {
-    print('카메라 움직임 >>> 위치 : ${latLng?.latitude}, ${latLng?.longitude}'
-        '\n원인: $reason'
-        '\n에니메이션 여부: $isAnimated');
-  }
+  static final Random _random = Random();
 
-  void _onCameraIdle() {
-    print('카메라 움직임 멈춤');
-  }
-
-  /// 지도 스냅샷
-  void _onTapTakeSnapShot() async {
-    final controller = await _controller.future;
-    controller.takeSnapshot((path) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              contentPadding: EdgeInsets.zero,
-              content: path != null
-                  ? Image.file(
-                      File(path),
-                    )
-                  : Text('path is null!'),
-              titlePadding: EdgeInsets.zero,
-            );
-          });
-    });
+  static Color getColor() {
+    return colorOptions[_random.nextInt(colorOptions.length)];
   }
 }
