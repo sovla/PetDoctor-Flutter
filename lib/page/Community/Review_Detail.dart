@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/atom/buttons/PopupMenuButton.dart';
+import 'package:pet_doctor/atom/inputs/TextFormField.dart';
 import 'package:pet_doctor/atom/widgets/ReplyWidget.dart';
 import 'package:pet_doctor/atom/widgets/Swiper.dart';
 import 'package:pet_doctor/constants/border.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/constants/color.dart';
-import 'package:pet_doctor/page/Community/Community_Home.dart';
 
 class ReviewDetailPage extends StatefulWidget {
   const ReviewDetailPage({super.key});
@@ -16,13 +16,13 @@ class ReviewDetailPage extends StatefulWidget {
 }
 
 class _ReviewDetailPageState extends State<ReviewDetailPage> {
-  CarouselController _pageController = CarouselController();
+  final CarouselController _pageController = CarouselController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("이전 페이지로"),
+          title: const Text('이전 페이지로'),
         ),
         body: Column(
           children: [
@@ -68,8 +68,8 @@ class _ReviewDetailPageState extends State<ReviewDetailPage> {
                     vertical: PaddingConstants.subVertical),
                 child: Column(
                   children: [
-                    const Text("제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발"),
-                    const Text("제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발"),
+                    const Text('제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발'),
+                    const Text('제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발제목 블라블랍라발발'),
                     SizedBox(
                       width: 320.r,
                       height: 200.r,
@@ -119,7 +119,7 @@ class _ReviewDetailPageState extends State<ReviewDetailPage> {
                 1,
                 2,
                 3,
-              ].map((e) => Pet_ReplyWidget()).toList()),
+              ].map((e) => const Pet_ReplyWidget()).toList()),
             )
           ],
         ),
@@ -130,36 +130,13 @@ class _ReviewDetailPageState extends State<ReviewDetailPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: (() {}), icon: Icon(Icons.camera)),
-              Pet_TextFormField(),
-              TextButton(onPressed: (() {}), child: Text("등록"))
+              IconButton(onPressed: (() {}), icon: const Icon(Icons.camera)),
+              const Pet_TextFormField(),
+              TextButton(onPressed: (() {}), child: const Text('등록'))
             ],
           ),
         ),
       ),
     );
-  }
-}
-
-class Pet_TextFormField extends StatelessWidget {
-  const Pet_TextFormField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 230.r,
-        height: 40.r,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(BorderConstants.borderRadius),
-            color: ColorConstants.backgroundColorLight,
-            border:
-                Border.all(width: 1, color: ColorConstants.borderGrayColor)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: PaddingConstants.buttonHorizontal),
-          child: Center(child: TextField()),
-        ));
   }
 }

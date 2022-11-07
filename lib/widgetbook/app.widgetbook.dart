@@ -7,10 +7,13 @@ import 'package:pet_doctor/atom/buttons/MoreButton.dart';
 import 'package:pet_doctor/atom/buttons/PetIconButton.dart';
 import 'package:pet_doctor/atom/buttons/PopupMenuButton.dart';
 import 'package:pet_doctor/atom/buttons/WriteButton.dart';
+import 'package:pet_doctor/atom/inputs/TextFormField.dart';
 import 'package:pet_doctor/atom/widgets/FacilityWidget.dart';
 import 'package:pet_doctor/atom/widgets/ReplyWidget.dart';
 import 'package:pet_doctor/atom/widgets/ReviewWidget.dart';
 import 'package:pet_doctor/atom/widgets/Swiper.dart';
+import 'package:pet_doctor/collection/DetailRow.dart';
+import 'package:pet_doctor/collection/Tabs.dart';
 import 'package:pet_doctor/page/Community/Community_Home.dart';
 import 'package:pet_doctor/page/Community/Review_Detail.dart';
 import 'package:pet_doctor/page/Home/Home.dart';
@@ -68,8 +71,8 @@ class HotreloadWidgetbook extends StatelessWidget {
                         name: 'Inputs',
                         useCases: [
                           WidgetbookUseCase(
-                            name: 'PetInput',
-                            builder: (context) => Container(),
+                            name: 'Pet_TextFormField',
+                            builder: (context) => Pet_TextFormField(),
                           ),
                           WidgetbookUseCase(
                             name: 'PetTextInput',
@@ -164,17 +167,24 @@ class HotreloadWidgetbook extends StatelessWidget {
                       ),
                     ],
                   ),
-                  WidgetbookCategory(name: 'Block', widgets: [
+                  WidgetbookCategory(name: 'Block', isExpanded: true, widgets: [
                     WidgetbookComponent(
+                      isExpanded: true,
                       name: 'Collections',
                       useCases: [
                         WidgetbookUseCase(
-                          name: 'CloseButton',
-                          builder: (context) => Container(),
+                          name: 'Pet_DetailRow',
+                          builder: (context) => Pet_DetailRow(
+                            icon: Icons.abc,
+                            textSpans: [
+                              TextSpan(text: "영업일"),
+                            ],
+                          ),
                         ),
                         WidgetbookUseCase(
-                          name: 'MoreButton',
-                          builder: (context) => Container(),
+                          name: 'Pet_Tabs',
+                          builder: (context) =>
+                              Pet_Tabs(menus: ["asd", 'asd', 'asd']),
                         ),
                         WidgetbookUseCase(
                           name: 'HamburgerButton',
