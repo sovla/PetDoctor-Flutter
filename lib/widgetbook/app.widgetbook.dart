@@ -17,8 +17,17 @@ import 'package:pet_doctor/collection/Images.dart';
 import 'package:pet_doctor/collection/Tabs.dart';
 import 'package:pet_doctor/page/Community/Community_Home.dart';
 import 'package:pet_doctor/page/Community/Review_Detail.dart';
+import 'package:pet_doctor/page/Community/Review_Write.dart';
 import 'package:pet_doctor/page/Home/Home.dart';
+import 'package:pet_doctor/page/Home/LocationSettingBottomSheet.dart';
+import 'package:pet_doctor/page/Hospital/Hospital_Detail.dart';
 import 'package:pet_doctor/page/Hospital/Hospital_Home.dart';
+import 'package:pet_doctor/page/Hospital/Hospital_Review.dart';
+import 'package:pet_doctor/page/Hospital/Hospital_Update.dart';
+import 'package:pet_doctor/page/Login/User_Login.dart';
+import 'package:pet_doctor/page/Login/User_SignUp.dart';
+import 'package:pet_doctor/page/MyMenu/Mymenu_Home.dart';
+import 'package:pet_doctor/page/MyMenu/User_Update.dart';
 
 import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
@@ -221,15 +230,15 @@ class HotreloadWidgetbook extends StatelessWidget {
                       useCases: [
                         WidgetbookUseCase(
                           name: 'Home',
-                          builder: (context) => Container(),
+                          builder: (context) => CommunityHomePage(),
                         ),
                         WidgetbookUseCase(
                           name: 'ReviewDetail',
-                          builder: (context) => Container(),
+                          builder: (context) => ReviewDetailPage(),
                         ),
                         WidgetbookUseCase(
                           name: 'ReviewWrite',
-                          builder: (context) => Container(),
+                          builder: (context) => ReviewWritePage(),
                         ),
                         WidgetbookUseCase(
                           name: 'ReviewReport',
@@ -242,7 +251,7 @@ class HotreloadWidgetbook extends StatelessWidget {
                       useCases: [
                         WidgetbookUseCase(
                           name: 'Home',
-                          builder: (context) => Container(),
+                          builder: (context) => HospitalHomePage(),
                         ),
                         WidgetbookUseCase(
                           name: 'Filtering',
@@ -250,19 +259,19 @@ class HotreloadWidgetbook extends StatelessWidget {
                         ),
                         WidgetbookUseCase(
                           name: 'Review-Write',
-                          builder: (context) => Container(),
+                          builder: (context) => HospitalReviewPage(),
                         ),
                         WidgetbookUseCase(
                           name: 'Change-Information',
-                          builder: (context) => Container(),
+                          builder: (context) => HospitalUpdatePage(),
                         ),
                         WidgetbookUseCase(
                           name: 'Detail-Information',
-                          builder: (context) => Container(),
+                          builder: (context) => HospitalDetailPage(),
                         ),
                         WidgetbookUseCase(
                           name: 'Detail-Reviews',
-                          builder: (context) => Container(),
+                          builder: (context) => HospitalDetailPage(),
                         ),
                       ],
                     ),
@@ -275,15 +284,15 @@ class HotreloadWidgetbook extends StatelessWidget {
                         ),
                         WidgetbookUseCase(
                           name: 'LocationSetting-Modal',
-                          builder: (context) => Container(),
+                          builder: (context) => LocationSettingBottomSheet(),
                         ),
                         WidgetbookUseCase(
                           name: 'Login-Modal',
-                          builder: (context) => Container(),
+                          builder: (context) => UserLoginPage(),
                         ),
                         WidgetbookUseCase(
                           name: 'SignUp-Modal',
-                          builder: (context) => Container(),
+                          builder: (context) => UserSignUpPage(),
                         ),
                       ],
                     ),
@@ -291,8 +300,12 @@ class HotreloadWidgetbook extends StatelessWidget {
                       name: 'MyMenu',
                       useCases: [
                         WidgetbookUseCase(
+                          name: 'Home',
+                          builder: (context) => MyMenuHomePage(),
+                        ),
+                        WidgetbookUseCase(
                           name: 'User-Information-Update',
-                          builder: (context) => Container(),
+                          builder: (context) => UserUpdatePage(),
                         ),
                         WidgetbookUseCase(
                           name: 'Bookmarks',
