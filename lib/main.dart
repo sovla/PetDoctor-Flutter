@@ -10,12 +10,12 @@ import 'package:pet_doctor/themes/dark_theme.dart';
 import 'package:pet_doctor/themes/light_theme.dart';
 import 'package:pet_doctor/widgetbook/app.widgetbook.dart';
 
-enum runTool { isDev, isWidgetBook }
+enum runTool { isDev, isWidgetBook, isRelease }
 
 void main() {
   var test = runTool.isWidgetBook;
 
-  if (test == runTool.isDev) {
+  if (test == runTool.isDev || test == runTool.isRelease) {
     runApp(const MyApp());
   } else if (test == runTool.isWidgetBook) {
     runApp(const HotreloadWidgetbook());
@@ -24,7 +24,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
