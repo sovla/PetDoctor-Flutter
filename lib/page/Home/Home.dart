@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar:
-          Get.find<BottomNavigationBarController>().publicNavigationBar(),
+          Get.put(BottomNavigationBarController()).publicNavigationBar(),
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,

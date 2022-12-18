@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_doctor/page/Home/Home.dart';
 import 'package:pet_doctor/state/bottomNavigationBar.dart';
 
-
 class CommunityHomePage extends StatefulWidget {
   const CommunityHomePage({super.key});
 
@@ -22,7 +21,7 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar:
-          Get.find<BottomNavigationBarController>().publicNavigationBar(),
+          Get.put(BottomNavigationBarController()).publicNavigationBar(),
       appBar: AppBar(
         title: Container(
           width: 200.r,

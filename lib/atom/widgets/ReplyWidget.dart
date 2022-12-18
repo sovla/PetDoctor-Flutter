@@ -20,7 +20,7 @@ class Pet_ReplyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(width: 1, color: ColorConstants.borderGrayColor)),
+          border: Border.all(width: 2, color: ColorConstants.borderGrayColor)),
       child: ConstrainedBox(
         constraints:
             BoxConstraints(minHeight: 100.r, minWidth: double.infinity),

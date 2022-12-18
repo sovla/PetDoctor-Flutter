@@ -33,7 +33,7 @@ class _HospitalHomePageState extends State<HospitalHomePage> {
     return Scaffold(
         body: const Pet_MapListView(),
         bottomNavigationBar:
-            Get.find<BottomNavigationBarController>().publicNavigationBar());
+            Get.put(BottomNavigationBarController()).publicNavigationBar());
   }
 }
 
