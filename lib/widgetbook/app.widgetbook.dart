@@ -41,12 +41,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 /// 2. 파라미터가 5개 이상 넘을경우 분리 생각해보기
 
 void main() {
-  runApp(const HotreloadWidgetbook());
+  runApp(HotreloadWidgetbook());
 }
 
-class HotreloadWidgetbook extends StatelessWidget {
-  const HotreloadWidgetbook({Key? key}) : super(key: key);
+class HotreloadWidgetbook extends StatefulWidget {
+  HotreloadWidgetbook({Key? key}) : super(key: key);
 
+  @override
+  State<HotreloadWidgetbook> createState() => _HotreloadWidgetbookState();
+}
+
+class _HotreloadWidgetbookState extends State<HotreloadWidgetbook>
+    with TickerProviderStateMixin {
   Widget buildStorybook(BuildContext context) {
     return ScreenUtilInit(
         designSize: const Size(360, 720),
@@ -193,8 +199,10 @@ class HotreloadWidgetbook extends StatelessWidget {
                         ),
                         WidgetbookUseCase(
                           name: 'Pet_Tabs',
-                          builder: (context) =>
-                              const Pet_Tabs(menus: ["asd", 'asd', 'asd']),
+                          builder: (context) => Pet_Tabs(
+                              menus: ["asd", 'asd', 'asd'],
+                              tabController:
+                                  TabController(length: 2, vsync: this)),
                         ),
                         WidgetbookUseCase(
                           name: 'Pet_Images',

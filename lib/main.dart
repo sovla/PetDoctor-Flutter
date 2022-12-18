@@ -13,12 +13,12 @@ import 'package:pet_doctor/widgetbook/app.widgetbook.dart';
 enum runTool { isDev, isWidgetBook, isRelease }
 
 void main() {
-  var test = runTool.isWidgetBook;
+  var test = runTool.isDev;
 
   if (test == runTool.isDev || test == runTool.isRelease) {
     runApp(const MyApp());
   } else if (test == runTool.isWidgetBook) {
-    runApp(const HotreloadWidgetbook());
+    runApp(HotreloadWidgetbook());
   }
 }
 
